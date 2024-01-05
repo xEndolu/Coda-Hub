@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 }
 
 class CustomColorScheme {
-  static final ColorScheme colorScheme = ColorScheme(
+  static final ColorScheme colorScheme = ColorScheme.light(
     primary: Color(0xFFD7B9FD),
     secondary: Colors.white,
     background: Color(0xFFF4F6FF),
@@ -28,8 +28,9 @@ class CustomColorScheme {
     onSurface: Colors.black,
     error: Colors.red,
     onError: Colors.white,
-    brightness: Brightness.light,
   );
+  static Color primaryColor = Color(0xFFD7B9FD); // Your custom primary color
+  static Color onPrimaryColor = Colors.black; // Your custom text color
 }
 
 class HomeScreen extends StatefulWidget {
@@ -622,6 +623,70 @@ List<OutlineItem> perlContent() {
   ];
 }
 
+class OutlineItem extends StatelessWidget {
+  final String title;
+  final String description;
+
+  const OutlineItem({
+    required this.title,
+    required this.description,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.0),
+        color: CustomColorScheme.colorScheme.primary,
+      ),
+      child: Padding(
+        padding: EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8.0),
+                color: Colors.white,
+              ),
+              child: Text(
+                title,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                ),
+              ),
+            ),
+            SizedBox(height: 8.0),
+            Container(
+              padding: EdgeInsets.all(12.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.0),
+                color:
+                    CustomColorScheme.colorScheme.primary, // Change to purple
+                border: Border.all(
+                  color: CustomColorScheme.colorScheme.primary,
+                  width: 2.0,
+                ),
+              ),
+              child: Text(
+                description,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class LanguageTile extends StatelessWidget {
   final String language;
   final List<OutlineItem> content;
@@ -630,17 +695,41 @@ class LanguageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(language),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                LanguageLesson(language: language, content: content),
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+        side: BorderSide(
+          color: CustomColorScheme.colorScheme.primary,
+          width: 5.0,
+        ),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          color: Colors.white,
+        ),
+        child: ListTile(
+          title: Text(
+            language,
+            style: TextStyle(
+              color: CustomColorScheme.colorScheme.onPrimary,
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        );
-      },
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    LanguageLesson(language: language, content: content),
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }
@@ -701,20 +790,57 @@ class VideoLectures extends StatelessWidget {
         itemCount: programmingLanguages.length,
         itemBuilder: (context, index) {
           final language = programmingLanguages.keys.elementAt(index);
-          return ListTile(
-            title: Text(language),
-            onTap: () {
-              final playlistId = programmingLanguages[language]!;
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      VideoPlaylist(playlistId: playlistId, language: language),
-                ),
-              );
-            },
-          );
+          final playlistId = programmingLanguages[language];
+
+          if (playlistId != null) {
+            return LanguageButton(language: language);
+          } else {
+            // Handle or skip null values as needed
+            return SizedBox
+                .shrink(); // Placeholder widget when encountering null
+          }
         },
+      ),
+    );
+  }
+}
+
+class LanguageButton extends StatelessWidget {
+  final String language;
+
+  const LanguageButton({required this.language});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      elevation: 4.0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12.0),
+        side: BorderSide(
+          color: CustomColorScheme.colorScheme.primary,
+          width: 5.0,
+        ),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0),
+          color: Colors.white,
+        ),
+        child: ListTile(
+          contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+          title: Text(
+            language,
+            style: TextStyle(
+              color: CustomColorScheme.colorScheme.onPrimary,
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          onTap: () {
+            // Handle onTap action
+          },
+        ),
       ),
     );
   }
@@ -753,36 +879,32 @@ class AboutUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF4F6FF),
+      backgroundColor: CustomColorScheme.colorScheme.background,
       appBar: AppBar(
         title: Text('About Us'),
-        backgroundColor: Color(0xFFD7B9FD),
+        backgroundColor: CustomColorScheme.colorScheme.primary,
       ),
       body: Padding(
         padding: EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildRoundedTitle('ABOUT US'),
-            SizedBox(height: 15.0),
-            Text(
-              'Hello, we are CodaHub! At Coda Hub, we\'re passionate about empowering the next generation of creators, innovators, and problem-solvers through the world of coding. Our platform is designed to make learning to code fun, engaging, and accessible for learners of all ages and skill levels.',
-              style: TextStyle(
-                fontSize: 18.0,
-                color: Colors.black87,
-              ),
+            _buildRoundedSection(
+              title: 'Hello, we are CodaHub!',
+              content:
+                  'At Coda Hub, we\'re passionate about empowering the next generation of creators, innovators, and problem-solvers through the world of coding. Our platform is designed to make learning to code fun, engaging, and accessible for learners of all ages and skill levels.',
             ),
             SizedBox(height: 20.0),
-            _buildRoundedTitle('The CodaHub Story'),
-            SizedBox(height: 15.0),
-            _buildRoundedText(
-              'Coda Hub was born out of a shared vision among a group of students, developers, and tech enthusiasts who recognized the growing importance of coding literacy in today\'s digital landscape. We saw an opportunity to create an inclusive and dynamic learning environment where anyone with a curiosity for coding could thrive.',
+            _buildRoundedSection(
+              title: 'The CodaHub Story',
+              content:
+                  'Coda Hub was born out of a shared vision among a group of students, developers, and tech enthusiasts who recognized the growing importance of coding literacy in today\'s digital landscape. We saw an opportunity to create an inclusive and dynamic learning environment where anyone with a curiosity for coding could thrive.',
             ),
             SizedBox(height: 20.0),
-            _buildRoundedTitle('The CodaHub Mission'),
-            SizedBox(height: 15.0),
-            _buildRoundedText(
-              'At Coda Hub, our mission is to ignite a passion for coding in beginners by providing an accessible and engaging platform. We strive to demystify programming, fostering confidence and skills through interactive learning experiences. Our goal is to empower individuals with the foundational knowledge needed to embark on their coding journey confidently, creating a diverse community of aspiring coders ready to shape the future.',
+            _buildRoundedSection(
+              title: 'The CodaHub Mission',
+              content:
+                  'At Coda Hub, our mission is to ignite a passion for coding in beginners by providing an accessible and engaging platform. We strive to demystify programming, fostering confidence and skills through interactive learning experiences. Our goal is to empower individuals with the foundational knowledge needed to embark on their coding journey confidently, creating a diverse community of aspiring coders ready to shape the future.',
             ),
           ],
         ),
@@ -790,80 +912,42 @@ class AboutUs extends StatelessWidget {
     );
   }
 
-  Widget _buildRoundedTitle(String title) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
-      decoration: BoxDecoration(
-        color: Color(0xFFD7B9FD),
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 24.0,
-          fontWeight: FontWeight.bold,
-          color: Colors.black,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRoundedText(String text) {
+  Widget _buildRoundedSection(
+      {required String title, required String content}) {
     return Container(
       padding: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10.0),
-        border: Border.all(
-          color: Color(0xFFD7B9FD),
-          width: 2.0,
-        ),
+        borderRadius: BorderRadius.circular(12.0),
+        color: CustomColorScheme.colorScheme.primary,
       ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 16.0,
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-}
-
-class OutlineItem extends StatelessWidget {
-  final String title;
-  final String description;
-
-  const OutlineItem({
-    required this.title,
-    required this.description,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 2.0,
-      margin: EdgeInsets.symmetric(vertical: 8.0),
-      child: Padding(
-        padding: EdgeInsets.all(12.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            padding: EdgeInsets.all(8.0),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              color: Colors.white,
+            ),
+            child: Text(
               title,
               style: TextStyle(
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 18.0,
               ),
             ),
-            SizedBox(height: 8.0),
-            Text(
-              description,
-              style: TextStyle(fontSize: 16.0),
+          ),
+          SizedBox(height: 15.0),
+          Text(
+            content,
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
