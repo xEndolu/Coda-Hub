@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,16 +9,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Color(0xFFD7B9FD),
-        scaffoldBackgroundColor: Color(0xFFDFDFDF),
-        appBarTheme: AppBarTheme(
-          backgroundColor: Color(0xFFD7B9FD),
-        ),
-      ),
+      title: 'Your App Title',
+      theme: ThemeData.from(colorScheme: CustomColorScheme.colorScheme),
       home: HomeScreen(),
     );
   }
+}
+
+class CustomColorScheme {
+  static final ColorScheme colorScheme = ColorScheme(
+    primary: Color(0xFFD7B9FD),
+    secondary: Colors.white,
+    background: Color(0xFFF4F6FF),
+    surface: Color(0xFFF4F6FF),
+    onPrimary: Colors.black,
+    onSecondary: Colors.black,
+    onBackground: Colors.black,
+    onSurface: Colors.black,
+    error: Colors.red,
+    onError: Colors.white,
+    brightness: Brightness.light,
+  );
 }
 
 class HomeScreen extends StatefulWidget {
@@ -40,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('CODA HUB'),
+        title: Text('CodaHub'),
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -102,7 +113,7 @@ class Lessons extends StatelessWidget {
         LanguageTile(language: 'R', content: rContent()),
         LanguageTile(language: 'Ruby', content: rubyContent()),
         LanguageTile(language: 'C and C++', content: cAndcplusplusContent()),
-        LanguageTile(language: 'Matlab', content: matlabContent()),
+        LanguageTile(language: 'MATLAB', content: matlabContent()),
         LanguageTile(language: 'TypeScript', content: typescriptContent()),
         LanguageTile(language: 'Scala', content: scalaContent()),
         LanguageTile(language: 'SQL', content: sqlContent()),
@@ -657,12 +668,82 @@ class LanguageLesson extends StatelessWidget {
 }
 
 class VideoLectures extends StatelessWidget {
+  final Map<String, String> programmingLanguages = {
+    'JavaScript': 'PL4cUxeGkcC9i9Ae2D9Ee1RvylH38dKuET',
+    'Python': 'PLsyeobzWxl7poL9JTVyndKe62ieoN-MZ3',
+    'Go': 'PL4cUxeGkcC9gC88BEo9czgyS72A3doDeM',
+    'Java': 'PLBlnK6fEyqRjKA_NuK9mHmlk0dZzuP1P5',
+    'Kotlin': 'PLsyeobzWxl7rooJFZhc3qPLwVROovGCfh',
+    'PHP': 'PL0eyrZgxdwhwwQQZA79OzYwl5ewA7HQih',
+    'C#': 'PL0eyrZgxdwhxD9HhtpuZV22KxEJAZ55X-',
+    'Swift': 'PL5PR3UyfTWvfacnfUsvNcxIiKIgidNRoW',
+    'R': 'PLjVLYmrlmjGdmPrz0Lx7smkd0qIKHInOF',
+    'Ruby': 'PLS1QulWo1RIbNBXZAeVbkkHEj9zsEbXQK',
+    'C and C++': 'PLWKjhJtqVAbmUE5IqyfGYEYjrZBYzaT4m',
+    'MATLAB': 'PLho7ncbqgQbviwKeoJybXPnFY5t590dRJ',
+    'TypeScript': 'PL4cUxeGkcC9gUgr39Q_yD6v-bSyMwKPUI',
+    'Scala': 'PLS1QulWo1RIagob5D6kMIAvu7DQC5VTh3',
+    'SQL': 'PLavw5C92dz9Ef4E-1Zi9KfCTXS_IN8gXZ',
+    'HTML': 'PLr6-GrHUlVf_ZNmuQSXdS197Oyr1L9sPB',
+    'CSS': 'PLr6-GrHUlVf8JIgLcu3sHigvQjTw_aC9C',
+    'NoSQL': 'PLsyeobzWxl7r0bn6dzVA8bQNxcx7DRl5F',
+    'Rust': 'PLzMcBGfZo4-nyLTlSRBvo0zjSnCnqjHYQ',
+    'Perl': 'PL1h5a0eaDD3rTG1U7w9wmff6ZAKDN3b16',
+  };
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Video Lectures will be available soon!',
-        style: TextStyle(fontSize: 18.0),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Video Lectures'),
+      ),
+      body: ListView.builder(
+        itemCount: programmingLanguages.length,
+        itemBuilder: (context, index) {
+          final language = programmingLanguages.keys.elementAt(index);
+          return ListTile(
+            title: Text(language),
+            onTap: () {
+              final playlistId = programmingLanguages[language]!;
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      VideoPlaylist(playlistId: playlistId, language: language),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class VideoPlaylist extends StatelessWidget {
+  final String playlistId;
+  final String language;
+
+  VideoPlaylist({required this.playlistId, required this.language});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Videos - $language'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () async {
+            final url = 'https://www.youtube.com/playlist?list=$playlistId';
+            if (await canLaunch(url)) {
+              await launch(url);
+            } else {
+              throw 'Could not launch $url';
+            }
+          },
+          child: Text('Open $language Playlist'),
+        ),
       ),
     );
   }
@@ -671,10 +752,80 @@ class VideoLectures extends StatelessWidget {
 class AboutUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Scaffold(
+      backgroundColor: Color(0xFFF4F6FF),
+      appBar: AppBar(
+        title: Text('About Us'),
+        backgroundColor: Color(0xFFD7B9FD),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildRoundedTitle('ABOUT US'),
+            SizedBox(height: 15.0),
+            Text(
+              'Hello, we are CodaHub! At Coda Hub, we\'re passionate about empowering the next generation of creators, innovators, and problem-solvers through the world of coding. Our platform is designed to make learning to code fun, engaging, and accessible for learners of all ages and skill levels.',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.black87,
+              ),
+            ),
+            SizedBox(height: 20.0),
+            _buildRoundedTitle('The CodaHub Story'),
+            SizedBox(height: 15.0),
+            _buildRoundedText(
+              'Coda Hub was born out of a shared vision among a group of students, developers, and tech enthusiasts who recognized the growing importance of coding literacy in today\'s digital landscape. We saw an opportunity to create an inclusive and dynamic learning environment where anyone with a curiosity for coding could thrive.',
+            ),
+            SizedBox(height: 20.0),
+            _buildRoundedTitle('The CodaHub Mission'),
+            SizedBox(height: 15.0),
+            _buildRoundedText(
+              'At Coda Hub, our mission is to ignite a passion for coding in beginners by providing an accessible and engaging platform. We strive to demystify programming, fostering confidence and skills through interactive learning experiences. Our goal is to empower individuals with the foundational knowledge needed to embark on their coding journey confidently, creating a diverse community of aspiring coders ready to shape the future.',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRoundedTitle(String title) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 5.0),
+      decoration: BoxDecoration(
+        color: Color(0xFFD7B9FD),
+        borderRadius: BorderRadius.circular(15.0),
+      ),
       child: Text(
-        'About Us information will be added here!',
-        style: TextStyle(fontSize: 18.0),
+        title,
+        style: TextStyle(
+          fontSize: 24.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRoundedText(String text) {
+    return Container(
+      padding: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10.0),
+        border: Border.all(
+          color: Color(0xFFD7B9FD),
+          width: 2.0,
+        ),
+      ),
+      child: Text(
+        text,
+        style: TextStyle(
+          fontSize: 16.0,
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
