@@ -16,6 +16,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// Define the map as a global variable or constant
+final Map<String, String> programmingLanguageIcons = {
+  'JavaScript': 'assets/javascript_logo.png',
+  'Python': 'assets/python_logo.png',
+  // Add other languages with their respective logo paths
+};
+
 class CustomColorScheme {
   static final ColorScheme colorScheme = ColorScheme.light(
     primary: Color(0xFFD7B9FD),
@@ -98,59 +105,90 @@ class Home extends StatelessWidget {
   }
 }
 
+class LanguageDetailsPage extends StatelessWidget {
+  final String language;
+
+  LanguageDetailsPage({required this.language});
+
+  @override
+  Widget build(BuildContext context) {
+    String? logoPath = programmingLanguageIcons[language];
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(language),
+      ),
+      body: Center(
+        child: logoPath != null
+            ? Image.asset(
+                logoPath,
+                width: 100, // Adjust width and height as needed
+                height: 100,
+              )
+            : Text('No logo available'),
+      ),
+    );
+  }
+}
+
 class Lessons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        LanguageTile(language: 'JavaScript', content: javascriptContent()),
-        LanguageTile(language: 'Python', content: pythonContent()),
-        LanguageTile(language: 'Go', content: goContent()),
-        LanguageTile(language: 'Java', content: javaContent()),
-        LanguageTile(language: 'Kotlin', content: kotlinContent()),
-        LanguageTile(language: 'PHP', content: phpContent()),
-        LanguageTile(language: 'C#', content: csharpContent()),
-        LanguageTile(language: 'Swift', content: swiftContent()),
-        LanguageTile(language: 'R', content: rContent()),
-        LanguageTile(language: 'Ruby', content: rubyContent()),
-        LanguageTile(language: 'C and C++', content: cAndcplusplusContent()),
-        LanguageTile(language: 'MATLAB', content: matlabContent()),
-        LanguageTile(language: 'TypeScript', content: typescriptContent()),
-        LanguageTile(language: 'Scala', content: scalaContent()),
-        LanguageTile(language: 'SQL', content: sqlContent()),
-        LanguageTile(language: 'HTML', content: htmlContent()),
-        LanguageTile(language: 'CSS', content: cssContent()),
-        LanguageTile(language: 'NoSQL', content: nosqlContent()),
-        LanguageTile(language: 'Rust', content: rustContent()),
-        LanguageTile(language: 'Perl', content: perlContent()),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Lessons'),
+      ),
+      body: ListView(
+        children: [
+          LanguageTile(language: 'JavaScript', content: javascriptContent()),
+          LanguageTile(language: 'Python', content: pythonContent()),
+          LanguageTile(language: 'Go', content: goContent()),
+          LanguageTile(language: 'Java', content: javaContent()),
+          LanguageTile(language: 'Kotlin', content: kotlinContent()),
+          LanguageTile(language: 'PHP', content: phpContent()),
+          LanguageTile(language: 'C#', content: csharpContent()),
+          LanguageTile(language: 'Swift', content: swiftContent()),
+          LanguageTile(language: 'R', content: rContent()),
+          LanguageTile(language: 'Ruby', content: rubyContent()),
+          LanguageTile(language: 'C and C++', content: cAndcplusplusContent()),
+          LanguageTile(language: 'MATLAB', content: matlabContent()),
+          LanguageTile(language: 'TypeScript', content: typescriptContent()),
+          LanguageTile(language: 'Scala', content: scalaContent()),
+          LanguageTile(language: 'SQL', content: sqlContent()),
+          LanguageTile(language: 'HTML', content: htmlContent()),
+          LanguageTile(language: 'CSS', content: cssContent()),
+          LanguageTile(language: 'NoSQL', content: nosqlContent()),
+          LanguageTile(language: 'Rust', content: rustContent()),
+          LanguageTile(language: 'Perl', content: perlContent()),
+        ],
+      ),
     );
   }
+}
 
-  List<OutlineItem> javascriptContent() {
-    return [
-      OutlineItem(
-        title: 'What is JavaScript?',
-        description:
-            'JavaScript is a versatile programming language primarily used for web development. It enables the creation of dynamic and interactive elements within web pages, providing enhanced user experiences. Originally designed for client-side scripting in browsers, JavaScript has evolved into a powerful language capable of handling both front-end and back-end development. Its syntax is similar to other programming languages, making it accessible for developers to create responsive and feature-rich web applications.',
-      ),
-      OutlineItem(
-        title: 'Why use JavaScript?',
-        description:
-            'JavaScript is essential in web development for its ability to create dynamic and responsive user interfaces. It reduces server load by executing tasks on the client side, leading to improved performance. JavaScript supports various programming paradigms, making it versatile for different applications, from simple web enhancements to complex server-side development using frameworks like Node.js.',
-      ),
-      OutlineItem(
-        title: 'How to use JavaScript?',
-        description:
-            'JavaScript can be incorporated into HTML documents using script tags. These tags can be placed in the head or body section of an HTML document, and developers can write JavaScript code directly within these tags or link external JavaScript files with a .js extension. The language utilizes variables, functions, loops, and conditionals to achieve desired functionalities, providing flexibility in coding.',
-      ),
-      OutlineItem(
-        title: 'Known apps:',
-        description:
-            '- Gmail: A widely used email service developed by Google, offering a dynamic and responsive user interface.\n- Slack: A popular team collaboration platform utilizing JavaScript for real-time messaging and interactive features.\n- Facebook: The leading social media platform, leveraging JavaScript for its dynamic and user-friendly interface.\n- Twitter: A microblogging platform that employs JavaScript for seamless and responsive tweet updates.\n- Instagram: A photo and video sharing platform using JavaScript for its interactive and visually engaging features.',
-      ),
-    ];
-  }
+List<OutlineItem> javascriptContent() {
+  return [
+    OutlineItem(
+      title: 'What is JavaScript?',
+      description:
+          'JavaScript is a versatile programming language primarily used for web development. It enables the creation of dynamic and interactive elements within web pages, providing enhanced user experiences. Originally designed for client-side scripting in browsers, JavaScript has evolved into a powerful language capable of handling both front-end and back-end development. Its syntax is similar to other programming languages, making it accessible for developers to create responsive and feature-rich web applications.',
+    ),
+    OutlineItem(
+      title: 'Why use JavaScript?',
+      description:
+          'JavaScript is essential in web development for its ability to create dynamic and responsive user interfaces. It reduces server load by executing tasks on the client side, leading to improved performance. JavaScript supports various programming paradigms, making it versatile for different applications, from simple web enhancements to complex server-side development using frameworks like Node.js.',
+    ),
+    OutlineItem(
+      title: 'How to use JavaScript?',
+      description:
+          'JavaScript can be incorporated into HTML documents using script tags. These tags can be placed in the head or body section of an HTML document, and developers can write JavaScript code directly within these tags or link external JavaScript files with a .js extension. The language utilizes variables, functions, loops, and conditionals to achieve desired functionalities, providing flexibility in coding.',
+    ),
+    OutlineItem(
+      title: 'Known apps:',
+      description:
+          '- Gmail: A widely used email service developed by Google, offering a dynamic and responsive user interface.\n- Slack: A popular team collaboration platform utilizing JavaScript for real-time messaging and interactive features.\n- Facebook: The leading social media platform, leveraging JavaScript for its dynamic and user-friendly interface.\n- Twitter: A microblogging platform that employs JavaScript for seamless and responsive tweet updates.\n- Instagram: A photo and video sharing platform using JavaScript for its interactive and visually engaging features.',
+    ),
+  ];
 }
 
 List<OutlineItem> pythonContent() {
