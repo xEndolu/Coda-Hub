@@ -16,11 +16,9 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Define the map as a global variable or constant
 final Map<String, String> programmingLanguageIcons = {
   'JavaScript': 'assets/javascript_logo.png',
   'Python': 'assets/python_logo.png',
-  // Add other languages with their respective logo paths
 };
 
 class CustomColorScheme {
@@ -36,8 +34,8 @@ class CustomColorScheme {
     error: Colors.red,
     onError: Colors.white,
   );
-  static Color primaryColor = Color(0xFFD7B9FD); // Your custom primary color
-  static Color onPrimaryColor = Colors.black; // Your custom text color
+  static Color primaryColor = Color(0xFFD7B9FD);
+  static Color onPrimaryColor = Colors.black;
 }
 
 class HomeScreen extends StatefulWidget {
@@ -122,7 +120,7 @@ class LanguageDetailsPage extends StatelessWidget {
         child: logoPath != null
             ? Image.asset(
                 logoPath,
-                width: 100, // Adjust width and height as needed
+                width: 100,
                 height: 100,
               )
             : Text('No logo available'),
@@ -703,8 +701,7 @@ class OutlineItem extends StatelessWidget {
               padding: EdgeInsets.all(12.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
-                color:
-                    CustomColorScheme.colorScheme.primary, // Change to purple
+                color: CustomColorScheme.colorScheme.primary,
                 border: Border.all(
                   color: CustomColorScheme.colorScheme.primary,
                   width: 2.0,
@@ -833,9 +830,7 @@ class VideoLectures extends StatelessWidget {
           if (playlistId != null) {
             return LanguageButton(language: language);
           } else {
-            // Handle or skip null values as needed
-            return SizedBox
-                .shrink(); // Placeholder widget when encountering null
+            return SizedBox.shrink();
           }
         },
       ),
