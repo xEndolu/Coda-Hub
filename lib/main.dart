@@ -104,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle:
-          NavBarStyle.style6, // Choose from 1 to 6 for different styles
+          NavBarStyle.style1, // Choose from 1 to 6 for different styles
     );
   }
 }
@@ -206,10 +206,9 @@ Widget _buildHomePageWidget() {
       child: Row(
         children: [
           Image.asset(
-            'assets/codahub.png', // Replace with your image path
+            'assets/codahub.png',
             width: 40.0, // Adjust the width as needed
             height: 40.0, // Adjust the height as needed
-            // You can add other properties for the image as required
           ),
           SizedBox(width: 12.0), // Add space between image and text
           Text(
@@ -283,7 +282,7 @@ Widget _buildContainerWithTextAndLogo(
           width: 100.0, // Adjust the width as needed
           height: 125.0, // Adjust the height as needed
           child: Image.asset(
-            'assets/what_to_know.png', // Replace with your image asset path
+            'assets/what_to_know.png',
             fit: BoxFit.cover,
           ),
         ),
@@ -413,7 +412,7 @@ class ProgrammingDetailsPage extends StatelessWidget {
             ),
             SizedBox(height: 15.0),
             _buildImageAndTitle(
-              'assets/intro1.png', // Replace with your image asset path
+              'assets/intro1.png',
               'WHAT IS PROGRAMMING?',
             ),
             _buildTitleWithColoredText(
@@ -421,7 +420,7 @@ class ProgrammingDetailsPage extends StatelessWidget {
               Color(0xFFD7B9FD),
             ),
             _buildImageAndTitle(
-              'assets/intro2.png', // Replace with your image asset path
+              'assets/intro2.png',
               'PROGRAMMING AS COMMUNICATION, or CODING',
             ),
             _buildTitleWithColoredText(
@@ -433,7 +432,7 @@ class ProgrammingDetailsPage extends StatelessWidget {
               Color(0xFFD7B9FD),
             ),
             _buildImageAndTitle(
-              'assets/intro3.png', // Replace with your image asset path
+              'assets/intro3.png',
               'CONCLUSION',
             ),
             _buildTitleWithColoredText(
@@ -451,7 +450,7 @@ class ProgrammingDetailsPage extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context)
-            .pop(); // Navigate back to the previous screen (home page)
+            .pop(); // Navigate back to the previous screen (home)
       },
       child: Container(
         padding: EdgeInsets.all(12.0),
@@ -545,10 +544,9 @@ class Lessons extends StatelessWidget {
               child: Row(
                 children: [
                   Image.asset(
-                    'assets/lesson_list.png', // Replace with your image path
+                    'assets/lesson_list.png',
                     width: 40.0, // Adjust the width as needed
                     height: 40.0, // Adjust the height as needed
-                    // You can add other properties for the image as required
                   ),
                   SizedBox(width: 12.0), // Add space between image and text
                   Text(
@@ -2959,7 +2957,7 @@ class OutlineItem extends StatelessWidget {
       margin: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12.0),
-        color: const Color(0xFFD7B9FD), // Default 0xFFD7B9FD background color
+        color: const Color(0xFFD7B9FD),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -2970,7 +2968,7 @@ class OutlineItem extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
-                color: Colors.white, // White background for title
+                color: Colors.white,
               ),
               child: Text(
                 title!,
@@ -2987,8 +2985,7 @@ class OutlineItem extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
-                color: const Color(
-                    0xFFD7B9FD), // 0xFFD7B9FD background color for description
+                color: const Color(0xFFD7B9FD),
               ),
               child: Text(
                 description!,
@@ -3012,7 +3009,7 @@ class OutlineItem extends StatelessWidget {
               padding: EdgeInsets.all(12.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12.0),
-                color: Colors.white, // White background for known apps list
+                color: Colors.white,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -3023,8 +3020,7 @@ class OutlineItem extends StatelessWidget {
                       padding: EdgeInsets.all(8.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12.0),
-                        color: const Color(
-                            0xFFD7B9FD), // 0xFFD7B9FD background color behind title
+                        color: const Color(0xFFD7B9FD),
                       ),
                       child: Text(
                         title!,
@@ -3171,7 +3167,6 @@ class LanguageLesson extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: ListView(
           children: content.map((item) => item.build(context)).toList(),
-          // Assuming 'build' method exists in OutlineItem class to return Widget
         ),
       ),
     );
@@ -3225,10 +3220,9 @@ class VideoLectures extends StatelessWidget {
               child: Row(
                 children: [
                   Image.asset(
-                    'assets/video_course.png', // Replace with your image path
+                    'assets/video_course.png',
                     width: 40.0, // Adjust the width as needed
                     height: 40.0, // Adjust the height as needed
-                    // You can add other properties for the image as required
                   ),
                   SizedBox(width: 12.0), // Add space between image and text
                   Text(
@@ -3471,8 +3465,7 @@ class AboutUs extends StatelessWidget {
                     title: 'Hello, we are CodaHub!',
                     content:
                         'At Coda Hub, we\'re passionate about empowering the next generation of creators, innovators, and problem-solvers through the world of coding. Our platform is designed to make learning to code fun, engaging, and accessible for learners of all ages and skill levels.',
-                    imagePath:
-                        'assets/codabot.png', // Replace with your image path
+                    imagePath: 'assets/codabot.png',
                   ),
                   SizedBox(height: 20.0),
                   _buildRoundedSection(
@@ -3516,7 +3509,6 @@ class AboutUs extends StatelessWidget {
             imagePath,
             width: 90.0, // Adjust the width as needed
             height: 250.0, // Adjust the height as needed
-            // You can add other properties for the image as required
           ),
           SizedBox(width: 20.0),
           Expanded(
