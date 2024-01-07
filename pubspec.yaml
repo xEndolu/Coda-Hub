@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^1.1.0
   url_launcher: ^6.2.2
+  persistent_bottom_nav_bar: ^5.0.2
 
 dev_dependencies:
   flutter_test:
@@ -61,27 +62,156 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/javascript/javascript.png
-    - assets/python/python.png
-    - assets/go/go.png
-    - assets/java/java.png
-    - assets/kotlin/kotlin.png
-    - assets/php/php.png
-    - assets/c#/c#.png
-    - assets/swift/swift.png
-    - assets/r/r.png
-    - assets/ruby/ruby.png
-    - assets/c and c++/c and c++.png
-    - assets/matlab/matlab.png
-    - assets/typescript/typescript.png
-    - assets/scala/scala.png
-    - assets/sql/sql.png
-    - assets/html/html.png
-    - assets/css/css.png
-    - assets/nosql/nosql.png
-    - assets/rust/rust.png
-    - assets/perl/perl.png
+    - assets/home.png
+    - assets/codahub.png
+    - assets/what_to_know.png
+    - assets/what_is_prog.png
+    - assets/lessons.png
+    - assets/vid_lecs.png
     
+    - assets/intro.png
+    - assets/intro1.png
+    - assets/intro2.png
+    - assets/intro3.png
+
+    - assets/lesson_list.png
+    - assets/video_course.png
+    - assets/about_us.png
+    - assets/codabot.png
+  
+    - assets/javascript/javascript.png
+    - assets/javascript/gmail.png
+    - assets/javascript/slack.png
+    - assets/javascript/fb.png
+    - assets/javascript/twtr.png
+    - assets/javascript/ig.png
+
+    - assets/python/python.png
+    - assets/python/ig.png
+    - assets/python/dropbox.png
+    - assets/python/yt.png
+    - assets/python/reddit.png
+
+    - assets/go/go.png
+    - assets/go/docker.png
+    - assets/go/kubernetes.png
+    - assets/go/prometheus.png
+    - assets/go/influx_db.png
+    - assets/go/terraform.png
+
+    - assets/java/java.png
+    - assets/java/android.png
+    - assets/java/eclipse.png
+    - assets/java/apache.png
+    - assets/java/linked_in.png
+    - assets/java/minecraft.png
+
+    - assets/kotlin/kotlin.png
+    - assets/kotlin/trello.png
+    - assets/kotlin/coursera.png
+    - assets/kotlin/evernote.png
+    - assets/kotlin/square.png
+    - assets/kotlin/slack.png 
+
+    - assets/php/php.png
+    - assets/php/wordpress.png
+    - assets/php/joomla.png
+    - assets/php/drupal.png
+    - assets/php/magento.png
+    - assets/php/phpbb.png
+
+    - assets/c#/c#.png
+    - assets/c#/msoffice.png
+    - assets/c#/vscode.png
+    - assets/c#/unity3d.png
+    - assets/c#/azuredevops.png
+    - assets/c#/stackoverflow.png
+
+    - assets/swift/swift.png
+    - assets/swift/ig.png
+    - assets/swift/uber.png
+    - assets/swift/linked_in.png
+    - assets/swift/waze.png
+    - assets/swift/duolingo.png
+
+    - assets/r/r.png
+    - assets/r/rstudio.png
+    - assets/r/shiny.png
+    - assets/r/bioconductor.png
+    - assets/r/ggplot2.png
+    - assets/r/dplyr.png
+
+    - assets/ruby/ruby.png
+    - assets/ruby/ruby_on_rails.png
+    - assets/ruby/github.png
+    - assets/ruby/shopify.png
+    - assets/ruby/airbnb.png
+    - assets/ruby/discourse.png
+
+    - assets/c and c++/c and c++.png
+    - assets/c and c++/mswindows.png
+    - assets/c and c++/adobe.png
+    - assets/c and c++/mozilla.png
+    - assets/c and c++/mysql.png
+    - assets/c and c++/unreal.png
+
+    - assets/matlab/matlab.png
+    - assets/matlab/simulink.png
+    - assets/matlab/matlab.png
+    - assets/matlab/matlab.png
+    - assets/matlab/matlab.png
+    - assets/matlab/matlab.png
+
+    - assets/typescript/typescript.png
+    - assets/typescript/angular.png
+    - assets/typescript/msoffice.png
+    - assets/typescript/asana.png
+    - assets/typescript/slack.png
+    - assets/typescript/vscode.png
+
+    - assets/scala/scala.png
+    - assets/scala/twtr.png
+    - assets/scala/linked_in.png
+    - assets/scala/apache.png
+    - assets/scala/coursera.png
+    - assets/scala/etsy.png
+
+    - assets/sql/sql.png
+    - assets/sql/mysqlworkbench.png
+    - assets/sql/smms.png
+    - assets/sql/oracle.png
+    - assets/sql/phpmyadmin.png
+    - assets/sql/sqlite.png
+
+    - assets/html/html.png
+    - assets/html/gdocs.png
+    - assets/html/wordpress.png
+    - assets/html/slack.png
+    - assets/html/trello.png
+    - assets/html/evernote.png
+
+    - assets/css/css.png
+
+    - assets/nosql/nosql.png
+    - assets/nosql/couchdb.png
+    - assets/nosql/mongodb.png
+    - assets/nosql/apache.png
+    - assets/nosql/amazon.png
+    - assets/nosql/neo4j.png
+
+    - assets/rust/rust.png
+    - assets/rust/mozilla.png
+    - assets/rust/dropbox.png
+    - assets/rust/cloudflare.png
+    - assets/rust/redox.png
+    - assets/rust/xi.png
+
+    - assets/perl/perl.png
+    - assets/perl/cpanel.png
+    - assets/perl/perl.png
+    - assets/perl/bugzilla.png
+    - assets/perl/request_tracker.png
+    - assets/perl/movable.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
