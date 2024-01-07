@@ -239,7 +239,7 @@ Widget _buildContainerWithTextAndLogo(
       borderRadius: BorderRadius.circular(12.0),
       border: Border.all(
         color: Color(0xFFD7B9FD),
-        width: 4.0,
+        width: 6.0,
       ),
     ),
     width: MediaQuery.of(context).size.width * 0.8,
@@ -306,7 +306,7 @@ Widget _buildContainerWithTextAndImage(
           BorderRadius.circular(10.0), // Slightly smaller border radius
       border: Border.all(
         color: Color(0xFFD7B9FD),
-        width: 3.0, // Slightly thinner border
+        width: 6.0, // Slightly thinner border
       ),
     ),
     width: MediaQuery.of(context).size.width *
@@ -359,7 +359,7 @@ Widget _buildSmallContainer(
       borderRadius: BorderRadius.circular(12.0),
       border: Border.all(
         color: Color(0xFFD7B9FD),
-        width: 4.0,
+        width: 6.0,
       ),
     ),
     width: MediaQuery.of(context).size.width * 0.4,
