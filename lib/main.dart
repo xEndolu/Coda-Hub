@@ -95,9 +95,10 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(
-        'Welcome to CODA HUB!',
-        style: TextStyle(fontSize: 24.0),
+      child: Image(
+        image: NetworkImage(
+          'https://images.pexels.com/photos/19776260/pexels-photo-19776260/free-photo-of-what-to-know.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+        ),
       ),
     );
   }
@@ -138,26 +139,106 @@ class Lessons extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          LanguageTile(language: 'JavaScript', content: javascriptContent()),
-          LanguageTile(language: 'Python', content: pythonContent()),
-          LanguageTile(language: 'Go', content: goContent()),
-          LanguageTile(language: 'Java', content: javaContent()),
-          LanguageTile(language: 'Kotlin', content: kotlinContent()),
-          LanguageTile(language: 'PHP', content: phpContent()),
-          LanguageTile(language: 'C#', content: csharpContent()),
-          LanguageTile(language: 'Swift', content: swiftContent()),
-          LanguageTile(language: 'R', content: rContent()),
-          LanguageTile(language: 'Ruby', content: rubyContent()),
-          LanguageTile(language: 'C and C++', content: cAndcplusplusContent()),
-          LanguageTile(language: 'MATLAB', content: matlabContent()),
-          LanguageTile(language: 'TypeScript', content: typescriptContent()),
-          LanguageTile(language: 'Scala', content: scalaContent()),
-          LanguageTile(language: 'SQL', content: sqlContent()),
-          LanguageTile(language: 'HTML', content: htmlContent()),
-          LanguageTile(language: 'CSS', content: cssContent()),
-          LanguageTile(language: 'NoSQL', content: nosqlContent()),
-          LanguageTile(language: 'Rust', content: rustContent()),
-          LanguageTile(language: 'Perl', content: perlContent()),
+          LanguageTile(
+              iconUrl:
+                  'https://images.pexels.com/photos/19776329/pexels-photo-19776329.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+              language: 'JavaScript',
+              content: javascriptContent()),
+          LanguageTile(
+              language: 'Python',
+              content: pythonContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'Go',
+              content: goContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'Java',
+              content: javaContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'Kotlin',
+              content: kotlinContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'PHP',
+              content: phpContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'C#',
+              content: csharpContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'Swift',
+              content: swiftContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'R',
+              content: rContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'Ruby',
+              content: rubyContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'C and C++',
+              content: cAndcplusplusContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'MATLAB',
+              content: matlabContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'TypeScript',
+              content: typescriptContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'Scala',
+              content: scalaContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'SQL',
+              content: sqlContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'HTML',
+              content: htmlContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'CSS',
+              content: cssContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'NoSQL',
+              content: nosqlContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'Rust',
+              content: rustContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
+          LanguageTile(
+              language: 'Perl',
+              content: perlContent(),
+              iconUrl:
+                  'https://drive.google.com/uc?id=your_javascript_icon_id'),
         ],
       ),
     );
@@ -725,8 +806,10 @@ class OutlineItem extends StatelessWidget {
 class LanguageTile extends StatelessWidget {
   final String language;
   final List<OutlineItem> content;
+  final String iconUrl;
 
-  LanguageTile({required this.language, required this.content});
+  LanguageTile(
+      {required this.language, required this.content, required this.iconUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -745,24 +828,25 @@ class LanguageTile extends StatelessWidget {
           borderRadius: BorderRadius.circular(12.0),
           color: Colors.white,
         ),
-        child: ListTile(
-          title: Text(
-            language,
-            style: TextStyle(
-              color: CustomColorScheme.colorScheme.onPrimary,
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    LanguageLesson(language: language, content: content),
+        child: Column(
+          children: [
+            ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(
+                    iconUrl), // Specify the icon URL for the CircleAvatar
               ),
-            );
-          },
+              title: Text(language),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        LanguageLesson(language: language, content: content),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
