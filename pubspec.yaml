@@ -30,9 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  youtube_player_flutter: ^8.1.2 
-
-
+  youtube_player_flutter: ^8.1.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -62,10 +60,28 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/javascript/javascript.png
+    - assets/python/python.png
+    - assets/go/go.png
+    - assets/java/java.png
+    - assets/kotlin/kotlin.png
+    - assets/php/php.png
+    - assets/c#/c#.png
+    - assets/swift/swift.png
+    - assets/r/r.png
+    - assets/ruby/ruby.png
+    - assets/c and c++/c and c++.png
+    - assets/matlab/matlab.png
+    - assets/typescript/typescript.png
+    - assets/scala/scala.png
+    - assets/sql/sql.png
+    - assets/html/html.png
+    - assets/css/css.png
+    - assets/nosql/nosql.png
+    - assets/rust/rust.png
+    - assets/perl/perl.png
+    
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

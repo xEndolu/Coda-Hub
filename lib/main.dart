@@ -16,11 +16,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-final Map<String, String> programmingLanguageIcons = {
-  'JavaScript': 'assets/javascript_logo.png',
-  'Python': 'assets/python_logo.png',
-};
-
 class CustomColorScheme {
   static final ColorScheme colorScheme = ColorScheme.light(
     primary: Color(0xFFD7B9FD),
@@ -103,32 +98,6 @@ class Home extends StatelessWidget {
   }
 }
 
-class LanguageDetailsPage extends StatelessWidget {
-  final String language;
-
-  LanguageDetailsPage({required this.language});
-
-  @override
-  Widget build(BuildContext context) {
-    String? logoPath = programmingLanguageIcons[language];
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(language),
-      ),
-      body: Center(
-        child: logoPath != null
-            ? Image.asset(
-                logoPath,
-                width: 100,
-                height: 100,
-              )
-            : Text('No logo available'),
-      ),
-    );
-  }
-}
-
 class Lessons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -138,26 +107,107 @@ class Lessons extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          LanguageTile(language: 'JavaScript', content: javascriptContent()),
-          LanguageTile(language: 'Python', content: pythonContent()),
-          LanguageTile(language: 'Go', content: goContent()),
-          LanguageTile(language: 'Java', content: javaContent()),
-          LanguageTile(language: 'Kotlin', content: kotlinContent()),
-          LanguageTile(language: 'PHP', content: phpContent()),
-          LanguageTile(language: 'C#', content: csharpContent()),
-          LanguageTile(language: 'Swift', content: swiftContent()),
-          LanguageTile(language: 'R', content: rContent()),
-          LanguageTile(language: 'Ruby', content: rubyContent()),
-          LanguageTile(language: 'C and C++', content: cAndcplusplusContent()),
-          LanguageTile(language: 'MATLAB', content: matlabContent()),
-          LanguageTile(language: 'TypeScript', content: typescriptContent()),
-          LanguageTile(language: 'Scala', content: scalaContent()),
-          LanguageTile(language: 'SQL', content: sqlContent()),
-          LanguageTile(language: 'HTML', content: htmlContent()),
-          LanguageTile(language: 'CSS', content: cssContent()),
-          LanguageTile(language: 'NoSQL', content: nosqlContent()),
-          LanguageTile(language: 'Rust', content: rustContent()),
-          LanguageTile(language: 'Perl', content: perlContent()),
+          LanguageTile(
+            language: 'JavaScript',
+            content: javascriptContent(),
+            imageAsset: 'assets/javascript/javascript.png',
+          ),
+          LanguageTile(
+            language: 'Python',
+            content: pythonContent(),
+            imageAsset: 'assets/python/python.png',
+          ),
+          LanguageTile(
+            language: 'Go',
+            content: goContent(),
+            imageAsset: 'assets/go/go.png',
+          ),
+          LanguageTile(
+            language: 'Java',
+            content: javaContent(),
+            imageAsset: 'assets/java/java.png',
+          ),
+          LanguageTile(
+            language: 'Kotlin',
+            content: kotlinContent(),
+            imageAsset: 'assets/kotlin/kotlin.png',
+          ),
+          LanguageTile(
+            language: 'PHP',
+            content: phpContent(),
+            imageAsset: 'assets/php/php.png',
+          ),
+          LanguageTile(
+            language: 'C#',
+            content: csharpContent(),
+            imageAsset: 'assets/c#/C#.png',
+          ),
+          LanguageTile(
+            language: 'Swift',
+            content: swiftContent(),
+            imageAsset: 'assets/swift/swift.png',
+          ),
+          LanguageTile(
+            language: 'R',
+            content: rContent(),
+            imageAsset: 'assets/r/r.png',
+          ),
+          LanguageTile(
+            language: 'Ruby',
+            content: rubyContent(),
+            imageAsset: 'assets/ruby/ruby.png',
+          ),
+          LanguageTile(
+            language: 'C and C++',
+            content: cAndcplusplusContent(),
+            imageAsset: 'assets/c and c++/c and c++.png',
+          ),
+          LanguageTile(
+            language: 'MATLAB',
+            content: matlabContent(),
+            imageAsset: 'assets/matlab/matlab.png',
+          ),
+          LanguageTile(
+            language: 'TypeScript',
+            content: typescriptContent(),
+            imageAsset: 'assets/typescript/typescript.png',
+          ),
+          LanguageTile(
+            language: 'Scala',
+            content: scalaContent(),
+            imageAsset: 'assets/scala/scala.png',
+          ),
+          LanguageTile(
+            language: 'SQL',
+            content: sqlContent(),
+            imageAsset: 'assets/sql/sql.png',
+          ),
+          LanguageTile(
+            language: 'HTML',
+            content: htmlContent(),
+            imageAsset: 'assets/html/html.png',
+          ),
+          LanguageTile(
+            language: 'CSS',
+            content: cssContent(),
+            imageAsset: 'assets/css/css.png',
+          ),
+          LanguageTile(
+            language: 'NoSQL',
+            content: nosqlContent(),
+            imageAsset: 'assets/nosql/nosql.png',
+          ),
+          LanguageTile(
+            language: 'Rust',
+            content: rustContent(),
+            imageAsset: 'assets/rust/rust.png',
+          ),
+          LanguageTile(
+            language: 'Perl',
+            content: perlContent(),
+            imageAsset: 'assets/perl/perl.png',
+          ),
+          // Add LanguageTile widgets for other programming languages similarly
         ],
       ),
     );
@@ -725,8 +775,13 @@ class OutlineItem extends StatelessWidget {
 class LanguageTile extends StatelessWidget {
   final String language;
   final List<OutlineItem> content;
+  final String imageAsset;
 
-  LanguageTile({required this.language, required this.content});
+  LanguageTile({
+    required this.language,
+    required this.content,
+    required this.imageAsset,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -740,30 +795,29 @@ class LanguageTile extends StatelessWidget {
           width: 5.0,
         ),
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0),
-          color: Colors.white,
+      child: ListTile(
+        leading: Image.asset(
+          imageAsset,
+          width: 50, // Set width according to your preference
+          height: 50, // Set height according to your preference
         ),
-        child: ListTile(
-          title: Text(
-            language,
-            style: TextStyle(
-              color: CustomColorScheme.colorScheme.onPrimary,
-              fontSize: 18.0,
-              fontWeight: FontWeight.bold,
-            ),
+        title: Text(
+          language,
+          style: TextStyle(
+            color: CustomColorScheme.colorScheme.onPrimary,
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
           ),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) =>
-                    LanguageLesson(language: language, content: content),
-              ),
-            );
-          },
         ),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>
+                  LanguageLesson(language: language, content: content),
+            ),
+          );
+        },
       ),
     );
   }
@@ -813,7 +867,12 @@ class VideoLectures extends StatelessWidget {
     'NoSQL': 'PLsyeobzWxl7r0bn6dzVA8bQNxcx7DRl5F',
     'Rust': 'PLzMcBGfZo4-nyLTlSRBvo0zjSnCnqjHYQ',
     'Perl': 'PL1h5a0eaDD3rTG1U7w9wmff6ZAKDN3b16',
+    // ... rest of your programming languages
   };
+
+  String getImageAssetPath(String language) {
+    return 'assets/${language.toLowerCase()}/${language.toLowerCase()}.png';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -828,7 +887,21 @@ class VideoLectures extends StatelessWidget {
           final playlistId = programmingLanguages[language];
 
           if (playlistId != null) {
-            return LanguageButton(language: language);
+            return LanguageButton(
+              language: language,
+              imageAsset: getImageAssetPath(language),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => VideoPlaylist(
+                      playlistId: playlistId,
+                      language: language,
+                    ),
+                  ),
+                );
+              },
+            );
           } else {
             return SizedBox.shrink();
           }
@@ -840,8 +913,14 @@ class VideoLectures extends StatelessWidget {
 
 class LanguageButton extends StatelessWidget {
   final String language;
+  final String imageAsset;
+  final VoidCallback onTap;
 
-  const LanguageButton({required this.language});
+  const LanguageButton({
+    required this.language,
+    required this.imageAsset,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -862,6 +941,11 @@ class LanguageButton extends StatelessWidget {
         ),
         child: ListTile(
           contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+          leading: Image.asset(
+            imageAsset,
+            width: 50,
+            height: 50,
+          ),
           title: Text(
             language,
             style: TextStyle(
@@ -870,9 +954,7 @@ class LanguageButton extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          onTap: () {
-            // Handle onTap action
-          },
+          onTap: onTap,
         ),
       ),
     );
